@@ -18,7 +18,7 @@ class Command(BaseCommand):
         concept_ids = [str(concept.conceptid) for concept in modelConcept.objects.filter(nodetype='ConceptScheme')]
 
         for concept_id in concept_ids:
-            #Create a thesauri file in the root r=directory of the project
+            #Create a thesauri file in the root directory of the project
             file = open(os.path.abspath(f"./concepts/{concept_id}.xml"), 'wb')
 
             #Get the thesauri
