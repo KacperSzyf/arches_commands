@@ -10,7 +10,7 @@ from arches.app.models.concept import Concept
 
 class Command(BaseCommand):
     '''
-    Command for downloading all thresauri in indvidual files
+    Command for downloading all thresauri as indvidual files
     '''
 
     def handle (self, *args, **options):
