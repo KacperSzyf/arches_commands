@@ -53,12 +53,11 @@ class Command(BaseCommand):
         'records': a list of serialized Resource Objects
         '''
         records = []
-        print("in get res")
         for id in resource_ids:
             if Resource.objects.filter(pk=id).exists():
                 resource = Resource.objects.get(pk = id)
                 resource.load_tiles()
-                resource_json = JSONSerializer().serializeToPython(resource)
+                resource_json = JSONSerializer().serialize(resource)
                 records.append(resource_json)
 
         return records
