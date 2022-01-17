@@ -67,5 +67,4 @@ class Command(BaseCommand):
         
         with open('json_records.jsonl', 'w') as json_records:
             for record in records:
-                print(record)
                 json_records.write(str(record) + "\n")
