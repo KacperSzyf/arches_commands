@@ -2,7 +2,7 @@ from fileinput import close
 from django.core.management.base import BaseCommand, CommandError
 
 #imports
-import csv
+import csv, json
 from arches.app.models.resource import Resource
 from arches.app.utils.betterJSONSerializer import JSONSerializer
 
@@ -34,7 +34,7 @@ class Command(BaseCommand):
             
             #Copy all ResourceID's to new array
             for row in csv_reder:
-                resource_ids.append(row['resourceid'])
+                resource_ids.append(row[ 'ResourceID'])
 
 
         records = self.get_resource(resource_ids)
@@ -57,13 +57,14 @@ class Command(BaseCommand):
             if Resource.objects.filter(pk=id).exists():
                 resource = Resource.objects.get(pk = id)
                 resource.load_tiles()
-                resource_json = JSONSerializer().serialize(resource)
-                records.append({"resourceinstance":resource_json})
+                resource_json = JSONSerializer().serializeToPython(resource)
+                records.append({'resourceinstance':resource_json})
 
         return records
 
     def write_to_file(self, records):
-        
+
         with open('json_records.jsonl', 'w') as json_records:
             for record in records:
-                json_records.write(str(record) + "\n")
+                json.dump(record, json_records)
+                json_records.write("\n")
