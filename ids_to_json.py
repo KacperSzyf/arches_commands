@@ -1,4 +1,5 @@
 from fileinput import close
+import re
 from django.core.management.base import BaseCommand, CommandError
 
 #imports
@@ -58,7 +59,17 @@ class Command(BaseCommand):
                 resource = Resource.objects.get(pk = id)
                 resource.load_tiles()
                 resource_json = JSONSerializer().serializeToPython(resource)
-                records.append({'resourceinstance':resource_json})
+               # print(resource_json)
+                # records.append({'resourceinstance':resource_json})
+                records.append({'resourceinstance' : 
+                    { 'graph_id' : resource_json['graph_id'],
+                    'legacyid' : resource_json['legacyid'],
+                    'displaydescription': resource_json['displaydescription'],
+                    'map_popup': resource_json['map_popup'],
+                    'displayname': resource_json['displayname'],
+                    'resourceinstanceid' : resource_json['resourceinstanceid'],
+                },
+                    'tiles' : resource_json['tiles']})
 
         return records
 
