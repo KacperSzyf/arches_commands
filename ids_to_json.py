@@ -58,7 +58,7 @@ class Command(BaseCommand):
                 resource = Resource.objects.get(pk = id)
                 resource.load_tiles()
                 resource_json = JSONSerializer().serialize(resource)
-                records.append({"resourceinstance" : resource_json})
+                records.append(dict(resourceinstance = resource_json))
 
         return records
 
