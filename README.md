@@ -22,7 +22,7 @@ to make this function work add
             latest_edit.resourcedisplayname =  Resource.objects.get(resourceinstanceid=self.resourceinstance.resourceinstanceid).displayname
             latest_edit.save()
 ```
-at the bottom of `def save_edit()` in `tile.py` located in `app/models/tile.py'
+at the bottom of `def save_edit()` in `tile.py` located in `app/models/tile.py`
 
 then add 
 ```
