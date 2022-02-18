@@ -22,7 +22,7 @@ to make this function work add
             latest_edit.resourcedisplayname =  Resource.objects.get(resourceinstanceid=self.resourceinstance.resourceinstanceid).displayname
             latest_edit.save()
 ```
-at the bottom of `def save_edit()` in `tile.py`
+at the bottom of `def save_edit()` in `tile.py` located in `app/models/tile.py`
 
 then add 
 ```
@@ -38,7 +38,7 @@ class LatestResourceEdit(models.Model):
         managed = True
         db_table = "latest_resource_edit"
 ```
-in `models.py` just after `EditLog()`
+just after `EditLog()` in `models.py` located in `app/models/tile.py`
 
 and finally add
 ```
@@ -63,4 +63,4 @@ if LatestResourceEdit.objects.filter(resourceinstanceid=self.resourceinstanceid,
             latest_edit.resourcedisplayname =  Resource.objects.get(resourceinstanceid=self.resourceinstanceid).displayname
             latest_edit.save()
 ```
-to `resource.py` at the bottom of `def save_edits()`
+ at the bottom of `def save_edits()` to `resource.py` located in `app/models/tile.py`
